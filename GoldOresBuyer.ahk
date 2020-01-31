@@ -2,17 +2,24 @@
 CoordMode, Pixel, Screen
 
 F1::
-OutputDebug, "Searching for Ordan."
-PixelSearch, outputX, outputY, -768, 211, -253, 549, 0xFFFF00, 0, Fast
-if (ErrorLevel = 0)
+Loop
 {
-    OutputDebug, "Found Ordan."
-    OutputDebug, "Right-clicking on Ordan."
-    Click, right, %outputX%, %outputY%
-    OutputDebug, "Moving to the trade option."
-    MouseMove, 0, 26,, R
-    OutputDebug, "Clicking on the trade option."
-    Click
+    Loop
+    {
+        OutputDebug, "Searching for Ordan."
+        PixelSearch, outputX, outputY, -768, 211, -253, 549, 0xFFFF00, 0, Fast
+        if (ErrorLevel = 0)
+        {
+            OutputDebug, "Found Ordan."
+            OutputDebug, "Right-clicking on Ordan."
+            Click, right, %outputX%, %outputY%
+            OutputDebug, "Moving to the trade option."
+            MouseMove, 0, 26,, R
+            OutputDebug, "Clicking on the trade option."
+            Click
+            Break
+        }
+    }
     Loop
     {
         OutputDebug, "Waiting for the store interface to open."
